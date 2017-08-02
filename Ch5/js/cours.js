@@ -78,3 +78,21 @@ window.addEventListener("beforeunload", (e) => {
     // En utilisant les 2 méthodes, on est sûr que ça va être prit en compte
     // Sur Firefox, ça s'affiche uniquement si c'est une action qu'on a fait sur la page qui nous fait la quitter
 })
+
+// Les événements se propagent de l'enfant vers les parents, jusqu'à document
+document.addEventListener("click", function (e) {
+    console.log("Gestionnaire document");
+});
+document.getElementById("para").addEventListener("click", (e) => {
+    console.log("Gestionnaire paragraphe");
+});
+document.getElementById("propa").addEventListener("click", (e) => {
+    console.log("Gestionnaire bouton");
+    // e.stopPropagation(); // Permet d'arrêter la propagation
+});
+
+// La plupart des événements sont associés à une action par défaut (cliquer sur un lien par ex.)
+document.getElementById("interdit").addEventListener("click", (e) => {
+    console.log("Continuez à lire le cours plutôt ;)");
+    e.preventDefault(); // Empêche l'action par défaut de se produir
+})
