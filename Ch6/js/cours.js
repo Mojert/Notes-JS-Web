@@ -36,3 +36,57 @@ document.getElementById("nationalite").addEventListener("change", (e) => {
     console.log("Code de nationalité : " + e.target.value);
 })
 
+// Le formulaire comme élément du DOM
+var form = document.querySelector("form");
+// form.elements représente la liste des champs (en incluant les boutons etc) du form
+console.log("Nombre de champs de saisie : " + form.elements.length); // affiche 10
+// console.log(form.elements); // affiche la la liste des champs
+console.log(form.elements[0].name); // Affiche "pseudo"
+console.log(form.elements.mdp.type); // Affiche "password". mdp marche car mon id est mdp. Si l'id était motDePasse on aurait dû mettre form.elements.moDePass
+// Soumission du formulaire
+// Affiche toutes les données saisies ou choisies
+form.addEventListener("submit", (e) => {
+    // Pseudo + MDP + Courriel
+    var pseudo = form.elements.pseudo.value;
+    var mdp = form.elements.mdp.value;
+    var courriel = form.elements.courriel.value;
+    console.log("Vous avez choisi le pseudo " + pseudo + ", le mot de passe " + mdp + " et le courriel " + courriel);
+
+    // Courriel de confirmation
+    if (form.elements.confirmation.checked)
+        console.log("Vous avez demandé une confirmation d'inscription par courriel");
+    else
+        console.log("Vous n'avez pas demandé une confirmation d'inscription par courriel");
+
+    // Abonnement
+    switch (form.elements.abonnement.value) {
+    case "abonewspromo":
+        console.log("Vous êtes abonné(e) à la newsletter et aux promotions");
+        break;
+    case "abonews":
+        console.log("Vous êtes abonné(e) à la newsletter");
+        break;
+    case "aborien":
+        console.log("Vous êtes abonné(e) à rien");
+        break;
+    default:
+        console.log("Erreur : code d'abonnement non reconnu");
+    }
+
+    // Nationalité
+    switch (form.elements.nationalite.value) {
+        case "FR":
+            console.log("Vous êtes français(e)");
+            break;
+        case "BE":
+            console.log("Vous êtes belge");
+            break;
+        case "CH":
+            console.log("Vous êtes suisse");
+            break;
+        default:
+            console.log("Vous êtes d'un autre pays");
+    }
+    
+    e.preventDefault(); // On annule l'envoi car on a rien pour le gérer et on a même pas configuré le form pour qu'il puisse envoyé les donnés
+});
