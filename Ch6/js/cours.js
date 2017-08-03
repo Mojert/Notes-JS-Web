@@ -90,3 +90,40 @@ form.addEventListener("submit", (e) => {
     
     e.preventDefault(); // On annule l'envoi car on a rien pour le gérer et on a même pas configuré le form pour qu'il puisse envoyé les donnés
 });
+
+
+// Validation des données saisies
+// Validation pendant la saisie
+// Vérification de la longueur du mot de passe saisi
+document.getElementById("mdp").addEventListener("input", (e) => { // input est envoyé dès que on modifie la zone de saisie
+    var mdp = e.target.value;
+    var longueurMdp = "faible";
+    var couleur = "red";
+    if (mdp.length >= 8) {
+        longueurMdp = "suffisante";
+        couleur = "green";
+    } else if (mdp.length >= 4){
+        longueurMdp = "moyenne";
+        couleur = "orange";
+    }
+    var aideMdpElt = document.getElementById("aideMdp");
+    aideMdpElt.textContent = "Longueure " + longueurMdp;
+    aideMdpElt.style.color = couleur;
+});
+
+// Validtion à la fin de la saisie
+// La fin de la saisie correspond à la perte du focus => blur
+// Contrôle du courriel en fin de saisie
+document.getElementById("courriel").addEventListener("blur", (e) => {
+    // indexOf renvoit l'index de la première occurence de l'élément et -1 s'il n'a pas été trouvé
+    // var validiteCourriel = e.target.value.indexOf("@") === -1 ? "Adresse invalide" : "";
+    // document.getElementById("aideCourriel").textContent = validiteCourriel;
+
+    // Cette méthode est un peu maladroite, il est mieux d'utiliser une expression régulière
+    // En JS une expression régulière est entouré de /
+    // Une petite explication est fournie ici : https://openclassrooms.com/courses/creez-des-pages-web-interactives-avec-javascript/manipulez-les-formulaires#/id/r-3683991
+    // Un site pratique : https://regex101.com
+    var regex = /.+@.+\..+/;
+    var validite = regex.test(e.target.value) ? "" : "Adresse invalide";
+    document.getElementById("aideCourriel").textContent = validite;
+});
