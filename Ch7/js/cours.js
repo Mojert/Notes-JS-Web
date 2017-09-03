@@ -49,4 +49,5 @@ function deplacerBloc() {
     }
 }
 
-animationID = requestAnimationFrame(deplacerBloc); // Début de l'animation
+// animationID = requestAnimationFrame(deplacerBloc); // Début de l'animation
+// Il est aussi possible de faire des animations en utilisant CSS

@@ -8,4 +8,19 @@
     background: red;
     position: relative; /* Permettra de décaler le bloc */
     left: 0px; /*Initialise la position gauche du bloc à déplacer */
+
+    /* On peut définir une animation en CSS*/
+    margin-left: -20px; /* Sert à simplifier les calculs */
+    animation-name: deplacerBloc;
+    animation-duration: 10s;
+    animation-fill-mode: forwards; /*Permet de dire que l'élément doit rester à l'endroit où il se trouve à la fin de l'animation */
+}
+
+@keyframes deplacerBloc {
+    from /*Position initiale*/{
+        left: 20px;
+    }
+    to /*Position finale*/{
+        left: 100%;
+    }
 }
