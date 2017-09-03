@@ -98,6 +98,7 @@ formulaireElt.addEventListener("submit", (e) => {
     
     var divElt = preparerDiv(lien); // On prépare notre Div qui contient notre lien
 
+    // Et on l'insert
     listeElt.insertAdjacentElement("afterbegin", divElt);
 
     formulaireElt.hidden = true;
@@ -107,6 +108,15 @@ formulaireElt.addEventListener("submit", (e) => {
     auteurTextElt.value = "";
     titreTextElt.value = "";
     urlTextElt.value = "";
+
+    // On affiche le message
+    var messageElt = document.getElementById("message");
+    messageElt.textContent = "Le lien \"" + titre + "\" a bien été ajouté."
+    messageElt.hidden = false;
+    // Et on le fait disparaître
+    setTimeout(() => {
+        messageElt.hidden = true;
+    }, 2000);
 
     e.preventDefault();
 })
