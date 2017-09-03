@@ -27,8 +27,8 @@ var listeLiens = [
 // Création de la liste
 var listeElt = document.getElementById("liens");
 
-// On crée un élément "div" pour chaque lien
-listeLiens.forEach((lien) => {
+// Prépare un élément div qui contient notre lien
+function preparerDiv(lien) {
     var divElt = document.createElement("div");
     divElt.classList.add("lien");
     // Titre
@@ -52,5 +52,61 @@ listeLiens.forEach((lien) => {
     auteurElt.textContent = "Ajouté par " + lien.auteur;
     divElt.appendChild(auteurElt);
 
+    return divElt;
+}
+
+// On crée un élément "div" pour chaque lien
+listeLiens.forEach((lien) => {
+    var divElt = preparerDiv(lien);
+
     listeElt.appendChild(divElt);
 });
+
+/*
+Activité 2
+*/
+
+var formulaireElt = document.querySelector("form");
+var ajouterElt = document.getElementById("ajouter");
+
+ajouterElt.addEventListener("click", () => {
+    ajouterElt.hidden = true;
+    ajouterElt.disabled = true;
+    formulaireElt.hidden = false;
+});
+
+formulaireElt.addEventListener("submit", (e) => {
+    // Les éléments du formulaires
+    var auteurTextElt = document.getElementById("auteur");
+    var titreTextElt = document.getElementById("titre");
+    var urlTextElt = document.getElementById("url");
+
+    var auteur = auteurTextElt.value;
+    var titre = titreTextElt.value;
+    var url = urlTextElt.value;
+
+    // On ajoute s'il le faut le http://
+    if (!(url.slice(0, 7) === "http://" || url.slice(0, 8) === "https://"))
+        url = "http://" + url;
+
+    // On déclare un objet pour pouvoir utiliser la fonction preparerDiv
+    var lien = {
+        auteur: auteur,
+        titre: titre,
+        url: url
+    };
+    
+    var divElt = preparerDiv(lien); // On prépare notre Div qui contient notre lien
+
+    listeElt.insertAdjacentElement("afterbegin", divElt);
+
+    formulaireElt.hidden = true;
+    ajouterElt.disabled = false;
+    ajouterElt.hidden = false;
+
+    auteurTextElt.value = "";
+    titreTextElt.value = "";
+    urlTextElt.value = "";
+
+    e.preventDefault();
+})

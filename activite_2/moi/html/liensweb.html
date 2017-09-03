@@ -4,11 +4,23 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/liensweb.css" />
-    <title>Activité 1</title>
+    <title>Activité 2</title>
 </head>
 
 <body>
     <h1>Activité 2</h1>
+    <div id="message"></div>
+    <p>
+        <button id="ajouter">Ajouter un lien</button>
+    </p>
+    <form hidden>
+        <p>
+            <input type="text" id="auteur" name="auteur" placeholder="Entrez votre nom" required>
+            <input type="text" id="titre" name="titre" placeholder="Entrez le titre du lien" required>
+            <input type="text" id="url" name="url" placeholder="Entrez l'URL du lien" required>    
+            <input type="submit" value="Ajouter">
+        </p>
+    </form>
 
     <!-- Les nouveaux éléments sont ajoutés dans cette balise -->
     <div id="liens">
