@@ -76,4 +76,19 @@ ajaxGet("http://localhost/javascript-web-srv/data/films.json", (reponse) => {
     films.forEach(function(film) {
         console.log(film.titre);
     });
-})
+});
+
+
+// Exercice
+var listeElt = document.getElementById("langages");
+function genererLangages(langagesString) {
+    var langages = langagesString.split(";");
+    langages.forEach((langage) => {
+        var liElt = document.createElement("li");
+        liElt.textContent = langage;
+        listeElt.appendChild(liElt);
+    });
+}
+ajaxGet("http://localhost/javascript-web-srv/data/langages.txt", genererLangages);
+
+
