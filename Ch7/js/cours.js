@@ -23,3 +23,30 @@ function diminuerCompteur() {
 
 // Apelle la fonction diminuerCompteur toutes les 1000 milisecondes
 var intervalID = setInterval(diminuerCompteur, 1000); // La fonction renvoie un nombre servant à identifier l'intervalle
+
+// Annimation
+var cadreElt = document.getElementById("cadre");
+var blocElt = document.getElementById("bloc");
+// Conversion en nombre du diamètre du bloc (valeur de la forme 25px)
+var diametreBloc = parseFloat(getComputedStyle(blocElt).width);
+var vitesse = 7;
+var animationID = null;
+
+// Déplace le bloc
+function deplacerBloc() {
+    var xBloc = parseFloat(getComputedStyle(blocElt).left);
+    var xMax = parseFloat(getComputedStyle(cadreElt).width);
+    var nouveauX = xBloc + vitesse;
+    if (nouveauX + diametreBloc <= xMax) {
+        // Déplacement du bloc
+        blocElt.style.left = nouveauX + "px";
+        // Demande au navigateur d'appeller deplacerBloc dès que possible
+        animationID = requestAnimationFrame(deplacerBloc);
+    } else {
+        blocElt.style.left = (xMax - diametreBloc) + "px"; // On s'assure que le bloc est à sa place
+        // Annulation de l'animation
+        cancelAnimationFrame(animationID);
+    }
+}
+
+animationID = requestAnimationFrame(deplacerBloc); // Début de l'animation
