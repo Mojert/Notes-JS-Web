@@ -35,6 +35,45 @@ req.send(null);
 // On se rend compte que ça fait beaucoup de code pour juste une requête. Une possibilité d'y remédier est d'utiliser une fonction
 // Elle est définie dans ajax.js
 
-ajaxGet("http://localhost/javascript-web-srv/data/langages.txt", (reponse) => {
-    console.log(reponse);
-});
+// ajaxGet("http://localhost/javascript-web-srv/data/langages.txt", (reponse) => {
+//     console.log(reponse);
+// });
+
+// Gestion de JSON par JavaScript
+
+var avion = {
+    marque: "Airbus",
+    modele: "A320"
+};
+console.log(avion);
+// Transforme l'objet JavaScript en chaîne de caractères JSON
+var texteAvion = JSON.stringify(avion);
+console.log(texteAvion);
+// Transforme la chaîne de caractères JSON en objet Javascript
+console.log(JSON.parse(texteAvion));
+
+// Ça gère aussi les tableaux d'objets
+var avions = [
+    avion,
+    {
+        marque: "Boeing",
+        modele: "747"
+    }
+]
+console.log(avions);
+// Transforme l'objet JavaScript en chaîne de caractères JSON
+var texteAvions = JSON.stringify(avions);
+console.log(texteAvions);
+// Transforme la chaîne de caractères JSON en objet Javascript
+console.log(JSON.parse(texteAvions));
+
+// On récupère un fichier JSON de la même manière qu'un fichier texte, c'est le traitement qui change
+
+ajaxGet("http://localhost/javascript-web-srv/data/films.json", (reponse) => {
+    // Transforme la réponse en tableau d'objets JavaScript
+    var films = JSON.parse(reponse);
+    // Affiche let titre de chaque film
+    films.forEach(function(film) {
+        console.log(film.titre);
+    });
+})
