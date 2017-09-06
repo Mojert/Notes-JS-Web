@@ -1,0 +1,45 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #eee;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+span {
+    font-weight: normal;
+    font-size: 80%;
+}
+
+.lien {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* CODE POSSIBLE SUR JS MAIS PLUS LOGIQUE SUR CSS */
+
+#commande {
+    max-width: 900px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+#formulaire {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#msgConfirmation {
+    max-width: 900px;
+    background-color: skyblue;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#msgErreur {
+    max-width: 900px;
+    background-color: indianred;
+    padding: 10px;
+    margin-bottom: 10px;
+}
